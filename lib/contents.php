@@ -254,6 +254,34 @@ function getSimpleHTMLDOM($url,
 	$defaultSpanText);
 }
 
+
+/**
+ * Gets contents from the Internet as SimpleXML Object.
+ *
+ * @param string $url The URL.
+ * @param array $header (optional) A list of cURL header.
+ * For more information follow the links below.
+ * * https://php.net/manual/en/function.curl-setopt.php
+ * * https://curl.haxx.se/libcurl/c/CURLOPT_HTTPHEADER.html
+ * @param array $opts (optional) A list of cURL options as associative array in
+ * the format `$opts[$option] = $value;`, where `$option` is any `CURLOPT_XXX`
+ * option and `$value` the corresponding value.
+ *
+ * For more information see http://php.net/manual/en/function.curl-setopt.php
+ * @return string Contents as XML Object
+ */
+function getXMLDOMObject($url,
+	$header = array(),
+	$opts = array()){
+
+	$content = getContents($url, $header, $opts);
+	$xmldomobject = new DOMDocument();
+	$xmldomobject->loadXML($content);
+	return $xmldomobject;
+}
+
+
+
 /**
  * Gets contents from the Internet as simplhtmldom object. Contents are cached
  * and re-used for subsequent calls until the cache duration elapsed.
