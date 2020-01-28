@@ -1,5 +1,5 @@
 <?php
-class VMwareSecurityBridge extends BridgeAbstract {
+class MedizintechnikClusterBridge extends BridgeAbstract {
 
 	const MAINTAINER = 'izintu.at';
 	const NAME = 'Medizintechnik Cluster Oberösterreich ';
