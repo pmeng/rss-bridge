@@ -15,7 +15,7 @@ class MedizintechnikClusterBridge extends BridgeAbstract {
 		$html = defaultLinkTo($html, self::WEBROOT);
 
 		$item = array();
-		$articles = $html->find('div[class="ecx-item"]');
+		$articles = $html->find('div[class="col-md-8"]');
 
 		foreach ($articles as $element) {
 			$item['uri'] = $element->find('a', 0)->getAttribute('href');
