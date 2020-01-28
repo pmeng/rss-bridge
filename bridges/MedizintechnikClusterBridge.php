@@ -15,17 +15,23 @@ class MedizintechnikClusterBridge extends BridgeAbstract {
 		$html = defaultLinkTo($html, self::WEBROOT);
 
 		$item = array();
-		$articles = $html->find('div[class="ecx-item"]');
+
+		$articles = $html->find('div.ecx-maincontent div.ecx-item');
 
 		foreach ($articles as $element) {
-			$item['uri'] = $element->find('a', 1)->getAttribute('href');
-			$title = $element->find('a', 1)->innertext;
-			$item['title'] = $title;
+			$attributes = $element->find('a', 1);
+			if ($attributes != NULL ) {
+
+			$attributes = $attributes->attr;
+			$item['uri'] = $attributes['href'];
+			$item['title'] = $attributes['title'];
 			$item['timestamp'] = strtotime($element->find('p[class="ecx-date"]', 0)->innertext);
 			$item['content'] = $element->find('p', 1)->innertext;
-			$item['uid'] = $title;
+			$item['uid'] = $attributes['title'];
 
 			$this->items[] = $item;
+
+			}
 		}
 	}
 }
