@@ -31,7 +31,7 @@ class VemapBridge extends BridgeAbstract {
 		$xml = getXMLDOMObject(self::URI)
 		or returnServerError('Could not Request Vemap.');
 		$item = array();
-		$xml_childnodes = $xml->childNodes->item(0)->childNodes;
+		$xml_childnodes = $xml->childNodes->item(1)->childNodes;
 
 		$datelimit = new DateTime("now");
 		$datelimit->sub(new DateInterval('P1D'));		
