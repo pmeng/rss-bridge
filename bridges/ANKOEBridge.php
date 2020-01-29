@@ -4,7 +4,7 @@ class ANKOEBridge extends BridgeAbstract {
 	const MAINTAINER = 'izintu.at';
 	const NAME = 'Ausschreibungen - ANKÖ';
 	const URI = 'http://ogd.ankoe.at/api/v1/notices';
-	const CACHE_TIMEOUT = 0;//86400; // 24h
+	const CACHE_TIMEOUT = 3600;// 1h
 	const DESCRIPTION = 'Ausschreibungen auf ANKÖ';
 	const WEBROOT = 'https://ankoe.at';
 	const PARAMETERS = array(
@@ -69,7 +69,7 @@ class ANKOEBridge extends BridgeAbstract {
 
 						//final step: filtering if keywords are supplied
 						if ($this->getInput('keywords') != null) {
-							$keyword_array = explode(",", $this->getInput('keywords'));
+							$keyword_array = explode(",", htmlspecialchars$this->getInput('keywords')));
 							foreach ($keyword_array as $keyword) {
 								$keyword_found = preg_match("/".$keyword."/i", $rss_title);
 								if ($keyword_found == true) break;
@@ -84,7 +84,7 @@ class ANKOEBridge extends BridgeAbstract {
 						if ($keyword_found || $this->getInput('keywords') == null) {
 							$rss_content = "Typ:<br/>" . $type . "<br/>Ausschreibende Stelle:<br/>" . $rss_officialname . "<br/>" . $rss_description;
 						} else if (!$keyword_found && $this->getInput('keywords') != null && $this->getInput('mark') == true) {
-							$rss_content = 'Eintrag in den Suchbegriffen "' . $this->getInput('keywords') . '" nicht enthalten!<br/><br/>' . "Typ:<br/>" . $type . "<br/>Ausschreibende Stelle:<br/>" . $rss_officialname . "<br/>" . $rss_description;
+							$rss_content = 'Eintrag in den Suchbegriffen "' . htmlspecialchars($this->getInput('keywords')) . '" nicht enthalten!<br/><br/>' . "Typ:<br/>" . $type . "<br/>Ausschreibende Stelle:<br/>" . $rss_officialname . "<br/>" . $rss_description;
 						}
 							if ($rss_content != null) {
 								$item['uri'] = $detail_xml->getElementsByTagName('URL_DOCUMENT')->item(0)->nodeValue;
