@@ -1,12 +1,12 @@
 <?php
-class ANKOEBridge extends BridgeAbstract {
+class VemapBridge extends BridgeAbstract {
 
 	const MAINTAINER = 'izintu.at';
-	const NAME = 'Ausschreibungen - ANKÖ';
-	const URI = 'http://ogd.ankoe.at/api/v1/notices';
+	const NAME = 'Ausschreibungen - Vemap';
+	const URI = 'https://bekanntmachungen.vemap.com/vemap-kdq-01.xml';
 	const CACHE_TIMEOUT = 3600;// 1h
-	const DESCRIPTION = 'Ausschreibungen auf ANKÖ';
-	const WEBROOT = 'https://ankoe.at';
+	const DESCRIPTION = 'Ausschreibungen auf Vemap';
+	const WEBROOT = 'https://vemap.at';
 	const PARAMETERS = array(
 			'Suchbegriffe' => array(
 				"keywords" => array(
@@ -29,7 +29,7 @@ class ANKOEBridge extends BridgeAbstract {
 	public function collectData(){
 	
 		$xml = getXMLDOMObject(self::URI)
-		or returnServerError('Could not Request ANKÖ.');
+		or returnServerError('Could not Request Vemap.');
 		$item = array();
 		$xml_childnodes = $xml->childNodes->item(0)->childNodes;
 
