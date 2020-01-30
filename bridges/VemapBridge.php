@@ -82,12 +82,12 @@ class VemapBridge extends BridgeAbstract {
 						$rss_content = null;
 
 						if ($keyword_found) {
-							$rss_content = "Typ:<br/>" . $type . "<br/>Ausschreibende Stelle:<br/>" . $rss_officialname . "<br/>" . $rss_description;
+							$rss_content = "Typ:\n" . $type . "\nAusschreibende Stelle:\n" . $rss_officialname . "\n" . $rss_description;
 							$rss_title = "[MATCH]". $rss_title;
 						} else if ($this->getInput('keywords') == null) {
-							$rss_content = "Typ:<br/>" . $type . "<br/>Ausschreibende Stelle:<br/>" . $rss_officialname . "<br/>" . $rss_description;
+							$rss_content = "Typ:\n" . $type . "\nAusschreibende Stelle:\n" . $rss_officialname . "\n" . $rss_description;
 						} else if (!$keyword_found && $this->getInput('keywords') != null && $this->getInput('mark') == true) {
-							$rss_content = 'Eintrag in den Suchbegriffen "' . htmlspecialchars($this->getInput('keywords')) . '" nicht enthalten!<br/><br/>' . "Typ:<br/>" . $type . "<br/>Ausschreibende Stelle:<br/>" . $rss_officialname . "<br/>" . $rss_description;
+							$rss_content = 'Eintrag in den Suchbegriffen "' . htmlspecialchars($this->getInput('keywords')) . '" nicht enthalten!\n\n' . "Typ:\n" . $type . "\nAusschreibende Stelle:\n" . $rss_officialname . "\n" . $rss_description;
 						}
 							if ($rss_content != null) {
 								$item['uri'] = $detail_xml->getElementsByTagName('URL_DOCUMENT')->item(0)->nodeValue;
