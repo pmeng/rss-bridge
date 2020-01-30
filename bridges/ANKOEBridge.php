@@ -84,7 +84,7 @@ class ANKOEBridge extends BridgeAbstract {
 						if ($keyword_found) {
 							$rss_content = "Typ:<br/>" . $type . "<br/>Ausschreibende Stelle:<br/>" . $rss_officialname . "<br/>" . $rss_description;
 							$rss_title = "[MATCH]". $rss_title;
-						} else if $this->getInput('keywords') == null) {
+						} else if ($this->getInput('keywords') == null) {
 							$rss_content = "Typ:<br/>" . $type . "<br/>Ausschreibende Stelle:<br/>" . $rss_officialname . "<br/>" . $rss_description;
 						} else if (!$keyword_found && $this->getInput('keywords') != null && $this->getInput('mark') == true) {
 							$rss_content = 'Eintrag in den Suchbegriffen "' . htmlspecialchars($this->getInput('keywords')) . '" nicht enthalten!<br/><br/>' . "Typ:<br/>" . $type . "<br/>Ausschreibende Stelle:<br/>" . $rss_officialname . "<br/>" . $rss_description;
